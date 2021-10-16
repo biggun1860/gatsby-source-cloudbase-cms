@@ -22,7 +22,6 @@ const singleTypeToTypeInfo = (singleType) => toTypeInfo(singleType, { single: tr
 const fetchEntities = async (entityDefinition, ctx) => {
   const entities = await fetchData(entityDefinition, ctx);
   await normalize.downloadMediaFiles(entities, ctx);
-  console.log('entities:',entities)
 
   return entities;
 };
@@ -54,7 +53,7 @@ const addDynamicZoneFieldsToSchema = ({ type, items, actions, schema }) => {
 
 exports.sourceNodes = async (
   { store, actions, cache, reporter, getNode, getNodes, createNodeId, createContentDigest, schema },
-  { apiURL, apiToken, queryLimit = 100, ...options }
+  { apiURL, apiToken, fetchOptions, queryLimit = 100, ...options }
 ) => {
   const { createNode, deleteNode, touchNode } = actions;
 
@@ -67,6 +66,7 @@ exports.sourceNodes = async (
     queryLimit,
     apiURL,
     apiToken,
+    fetchOptions,
     reporter,
     touchNode,
     createContentDigest,

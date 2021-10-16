@@ -2,12 +2,12 @@ import axios from 'axios';
 import { isObject, forEach, set, castArray, startsWith } from 'lodash';
 
 module.exports = async (entityDefinition, ctx) => {
-  const { apiURL, apiToken, queryLimit, reporter } = ctx;
+  const { apiURL, apiToken, fetchOptions, queryLimit, reporter } = ctx;
 
   const { endpoint, api } = entityDefinition;
 
   // Define API endpoint.
-  let apiBase = `${apiURL}/${endpoint}`;
+  const apiBase = `${apiURL}/${endpoint}`;
 
   const requestOptions = {
     method: 'GET',
@@ -15,7 +15,7 @@ module.exports = async (entityDefinition, ctx) => {
     // Place global params first, so that they can be overriden by api.qs
     params: { limit: queryLimit, ...api?.qs },
     headers: addAuthorizationHeader({}, apiToken),
-    proxy: { host: '127.0.0.1', port: 8899 },
+    ...fetchOptions,
   };
 
   reporter.info(

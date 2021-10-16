@@ -27,6 +27,9 @@ plugins: [
       queryLimit: 1000, // Defaults to 100
       collectionTypes: [`product`, `user`],
       singleTypes: [`global`, `contact`],
+      // fetchOptions: { // axios options
+      //   proxy: { host: `127.0.0.1`, port: 8899 },
+      // },
     },
   },
 ];
