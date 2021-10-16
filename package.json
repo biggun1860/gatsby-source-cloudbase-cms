@@ -1,0 +1,60 @@
+{
+  "name": "gatsby-source-cloudbase-cms",
+  "version": "1.0.0",
+  "description": "Gatsby source plugin for building websites using CloudBase CMS as a data source",
+  "directories": {
+    "lib": "./lib"
+  },
+  "files": [
+    "lib/*",
+    "gatsby-node.js",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/biggun1860/gatsby-source-cloudbase-cms.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "prepublishOnly": "npm run build",
+    "build": "babel src --out-dir lib",
+    "watch": "babel -w src --out-dir lib",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write 'src/**/*.js'",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-plugin",
+    "CloudBase"
+  ],
+  "dependencies": {
+    "axios": "0.21.1",
+    "gatsby-node-helpers": "0.3.0",
+    "gatsby-source-filesystem": "3.7.1",
+    "lodash": "4.17.21",
+    "pluralize": "8.0.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.14.5",
+    "@babel/core": "7.14.6",
+    "@babel/plugin-transform-runtime": "7.14.5",
+    "@babel/preset-env": "7.14.7",
+    "eslint": "7.13.0",
+    "husky": "4.3.0",
+    "lint-staged": "10.5.1",
+    "prettier": "2.1.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
+  }
+}
